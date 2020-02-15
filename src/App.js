@@ -1,11 +1,10 @@
+
 import React from "react";
 
 // This is a setup function that simulates client/server setup.
 // On the server, it simulates Sidebar and Content being available right away.
 // On the client, it simulates them resolving over network (when you press a button).
-export default function getApp(
-  isSimulatingNetwork
-) {
+export default function getApp(isSimulatingNetwork) {
   let Sidebar;
   let Content;
   if (isSimulatingNetwork) {
@@ -36,14 +35,12 @@ export default function getApp(
 
   function RealSidebar() {
     const [count, setCount] = React.useState(0);
-    const [
-      didHydrate,
-      setDidHydrate
-    ] = React.useState(false);
+    const [didHydrate, setDidHydrate] = React.useState(false);
     React.useEffect(() => {
       // Make it easy to see when the code has loaded.
       setDidHydrate(true);
     }, []);
+
     return (
       <div
         style={{
@@ -53,18 +50,11 @@ export default function getApp(
           border: "1px solid grey",
           margin: 10,
           padding: 10
-        }}
-      >
+        }}>
         <h1>
-          Sidebar (
-          {didHydrate
-            ? "Hydrated with JS"
-            : "Initial HTML"}
-          )
+          Sidebar ({didHydrate ? "Hydrated with JS" : "Initial HTML"})
         </h1>
-        <button
-          onClick={() => setCount(c => c + 1)}
-        >
+        <button onClick={() => setCount(c => c + 1)}>
           Clicked on sidebar {count} times
         </button>
       </div>
@@ -73,14 +63,12 @@ export default function getApp(
 
   function RealContent() {
     const [count, setCount] = React.useState(0);
-    const [
-      didHydrate,
-      setDidHydrate
-    ] = React.useState(false);
+    const [didHydrate, setDidHydrate] = React.useState(false);
     React.useEffect(() => {
       // Make it easy to see when the code has loaded.
       setDidHydrate(true);
     }, []);
+
     return (
       <div
         style={{
@@ -90,18 +78,11 @@ export default function getApp(
           border: "1px solid grey",
           margin: 10,
           padding: 10
-        }}
-      >
+        }}>
         <h1>
-          Content (
-          {didHydrate
-            ? "Hydrated with JS"
-            : "Initial HTML"}
-          )
+          Content ({didHydrate ? "Hydrated with JS" : "Initial HTML"})
         </h1>
-        <button
-          onClick={() => setCount(c => c + 1)}
-        >
+        <button onClick={() => setCount(c => c + 1)}>
           Clicked on content {count} times
         </button>
       </div>
@@ -116,30 +97,21 @@ export default function getApp(
           border: "1px solid grey",
           margin: 10,
           padding: 10
-        }}
-      >
+        }}>
         <h1>React Progressive Hydration Demo*</h1>
         <h3>
           <i>
-            * very experimental — likely contains
-            bugs.
+            * very experimental — likely contains bugs.
           </i>
         </h3>
         <h2>
-          This app is server-rendered to HTML.{" "}
-          Concurrent Mode lets us hydrate parts of
-          UI without waiting for <i>all</i> JS to
-          load.
+          This app is server-rendered to HTML.{" "}Concurrent Mode lets us hydrate parts of UI without waiting for <i>all</i> JS to load.
         </h2>
-        <React.Suspense
-          fallback={<h2>Loading sidebar...</h2>}
-        >
+        <React.Suspense fallback={<h2>Loading sidebar...</h2>}>
           <Sidebar />
         </React.Suspense>
         <br />
-        <React.Suspense
-          fallback={<h2>Loading content...</h2>}
-        >
+        <React.Suspense fallback={<h2>Loading content...</h2>}>
           <Content />
         </React.Suspense>
       </div>
